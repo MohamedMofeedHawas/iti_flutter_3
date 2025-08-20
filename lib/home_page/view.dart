@@ -65,7 +65,7 @@ List<ListItem> listItems = [
   ListItem(
     name: "P.C",
     price: 165,
-    rate: 3.9,
+    rate: 4.9,
     imageURL:
         "https://cdn11.bigcommerce.com/s-w5trgcbv/images/stencil/320w/products/13576/78210/large-Dell7010SFF_23__95629.1.jpg",
   ),
