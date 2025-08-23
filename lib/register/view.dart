@@ -315,9 +315,11 @@ class _ScreenState extends State<MyRegisterScreen> {
                 actions: [
                   ElevatedButton(onPressed: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context) => MyRegisterScreen(),));
-                  }, child: Text("No ",style: TextStyle(fontWeight: FontWeight.bold),)), ElevatedButton(onPressed: (){
+                  }, child: Text("No ",style: TextStyle(fontWeight: FontWeight.bold),)),
+
+                  ElevatedButton(onPressed: (){
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("You Are Successfully Submit, Welcome....")));
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage(),));
+                    Navigator.pushNamed(context, "profile");
                   }, child: Text("Yes ",style: TextStyle(fontWeight: FontWeight.bold),)),
 
                 ],

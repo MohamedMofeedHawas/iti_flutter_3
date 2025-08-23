@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:iti_flutter_3/login/view.dart';
+import 'package:iti_flutter_3/profile_page/view.dart';
 
 import 'package:iti_flutter_3/splach/view.dart';
 
@@ -17,7 +19,15 @@ class MyAppScreen extends StatelessWidget {
       onTap: (){
         FocusManager.instance.primaryFocus?.unfocus();
       },
-      child: MaterialApp(theme: ThemeData(
+      child: MaterialApp
+        (
+        initialRoute: "login",
+        routes: {
+          "login" : (context) => LoginScreen(),
+          "profile" : (context) => ProfilePage()
+        },
+
+        theme: ThemeData(
 
         appBarTheme: AppBarTheme(
           centerTitle: true,
