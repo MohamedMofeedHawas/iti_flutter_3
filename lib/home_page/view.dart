@@ -1,9 +1,24 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:iti_flutter_3/cart_page/view.dart';
 import 'package:iti_flutter_3/orders_page/view.dart';
 import 'package:iti_flutter_3/products/view.dart';
 import 'package:iti_flutter_3/profile_page/view.dart';
+
+
+int click = 0;
+List <Widget> widgetList = [
+  HomePage(),
+  ProductsPage(),
+  CartPage(),
+  OrdersPage(),
+  ProfilePage(),
+];
+
+
+
+
 
 List<Map<String, String>> list = [
   {
@@ -137,7 +152,7 @@ List<ListItem> listItems = [
         "https://www.astarshoes.com/cdn/shop/files/Women_sSmallSizeThicksoleFashionCasualShoes-6_300x300.jpg?v=1727319984",
   ),
 ];
-int click = 0;
+// int click = 0;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -149,20 +164,53 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          centerTitle: true,
-          titleTextStyle: TextStyle(
-            color: Colors.black87,
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
-        ),
-      ),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        drawer: Drawer(
+
+
+      return Scaffold(
+          // bottomNavigationBar: CurvedNavigationBar(buttonBackgroundColor: Colors.teal[100],
+          //
+          //   backgroundColor: Colors.lightGreenAccent.withOpacity(0.4),
+          //   items: <Widget>[
+          //     Icon(Icons.home, color: click ==0 ? Colors.indigoAccent[700] : Colors.black,size: 27,shadows: [BoxShadow(
+          //
+          //         color: click ==0 ? Colors.red :Colors.transparent
+          //         ,blurRadius: 12                )
+          //     ],),
+          //     Icon(shadows: [
+          //       BoxShadow(
+          //           color: click ==1 ? Colors.red :Colors.transparent
+          //           ,blurRadius: 12                )
+          //     ],
+          //
+          //         Icons.shopping_bag,
+          //         color: click ==1 ? Colors.indigoAccent[700] : Colors.black              ),
+          //     Icon(shadows: [
+          //       BoxShadow(
+          //           color: click ==2 ? Colors.red :Colors.transparent
+          //           ,blurRadius: 12                )
+          //     ],
+          //         Icons.shopping_cart,
+          //         color: click ==2 ? Colors.indigoAccent[700] : Colors.black              ),
+          //     Icon(Icons.list_alt, color: click ==3 ? Colors.indigoAccent[700] : Colors.black,size: 27,shadows: [
+          //       BoxShadow(
+          //           color: click ==3 ? Colors.red :Colors.transparent
+          //           ,blurRadius: 12                )
+          //     ],),
+          //     Icon(Icons.person,color: click ==4 ? Colors.indigoAccent[700] : Colors.black,size: 27,shadows: [
+          //       BoxShadow(
+          //           color: click ==4 ? Colors.red :Colors.transparent
+          //           ,blurRadius: 12                )
+          //     ],),
+          //
+          //   ],
+          //   onTap: (index) {
+          //     setState(() {
+          //       click = index;
+          //     });
+          //   },
+          // ),
+
+          drawer: Drawer(
           child: Column(
             children: [
               SafeArea(
@@ -266,213 +314,224 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        body:
-     SizedBox(
-       height: 800,
-       child: ListView(
-         children: [
-           Column(
-             crossAxisAlignment: CrossAxisAlignment.start,
-             children: [
-               SizedBox(
-                 height: 200,
-                 width: 400,
-                 child: ListView.builder(
-                   scrollDirection: Axis.horizontal,
-                   itemCount: list.length,
-                   itemBuilder: (context, index) => stack(
-                     title: list[index]["title"]!,
-                     subTitle: list[index]["subTitle"]!,
-                     imageURL: list[index]["imageURL"]!,
-                   ),
-                 ),
-               ),
-               SizedBox(height: 15),
-               Padding(
-                 padding: const EdgeInsetsGeometry.directional(start: 13),
-                 child: Text(
-                   "Featured Products",
-                   style: TextStyle(
-                     fontWeight: FontWeight.bold,
-                     fontSize: 22,
-                     color: Colors.black87,
-                   ),
-                 ),
-               ),
-               SizedBox(
-                 height: 299,
-                 width: 400,
-                 child: ListView.builder(
+        body: HomeItems(),
+        // body: widgetList[click],
+      );
 
-                   itemBuilder: (context, index) => ListItem(
-                     name: listItems[index].name,
-                     price: listItems[index].price,
-                     rate: listItems[index].rate,
-                     imageURL: listItems[index].imageURL,
-                   ),
-                   itemCount: listItems.length,
-                   scrollDirection: Axis.horizontal,
-                 ),
-               ),
-               SizedBox(height: 4),
-               Padding(
-                 padding: const EdgeInsetsGeometry.directional(start: 13),
-                 child: Text(
-                   "Categories",
-                   style: TextStyle(
-                     fontWeight: FontWeight.bold,
-                     fontSize: 22,
-                     color: Colors.black87,
-                   ),
-                 ),
-               ),
-               SizedBox(height: 5),
-               Row(
-                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                 children: [
-                   TextButton.icon(
-                     onPressed: () {},
-                     label: Text(
-                       "Electronics",
-                       style: TextStyle(
-                         color: Colors.black.withOpacity(0.7),
-                         fontWeight: FontWeight.bold,
-                       ),
-                     ),
-                     icon: Icon(Icons.computer, color: Colors.purple),
-                     style: TextButton.styleFrom(
-                       elevation: 5,
-                       shape: RoundedRectangleBorder(
-                         borderRadius: BorderRadiusGeometry.all(
-                           Radius.circular(10),
-                         ),
-                       ),
-                       shadowColor: Colors.grey,
-                       backgroundColor: Color(0xffebeef2),
-                     ),
-                   ),
-                   TextButton.icon(
-                     onPressed: () {},
-                     label: Text(
-                       "Phones",
-                       style: TextStyle(
-                         color: Colors.black.withOpacity(0.7),
-                         fontWeight: FontWeight.bold,
-                       ),
-                     ),
-                     icon: Icon(Icons.phone_android, color: Colors.purple),
-                     style: TextButton.styleFrom(
-                       elevation: 5,
-                       shape: RoundedRectangleBorder(
-                         borderRadius: BorderRadiusGeometry.all(
-                           Radius.circular(10),
-                         ),
-                       ),
-                       shadowColor: Colors.grey,
-                       backgroundColor: Color(0xffebeef2),
-                     ),
-                   ),
-                   TextButton.icon(
-                     onPressed: () {},
-                     label: Text(
-                       "Audio",
-                       style: TextStyle(
-                         color: Colors.black.withOpacity(0.7),
-                         fontWeight: FontWeight.bold,
-                       ),
-                     ),
-                     icon: Icon(Icons.headphones_rounded, color: Colors.purple),
-                     style: TextButton.styleFrom(
-                       elevation: 5,
-                       shape: RoundedRectangleBorder(
-                         borderRadius: BorderRadiusGeometry.all(
-                           Radius.circular(10),
-                         ),
-                       ),
-                       shadowColor: Colors.grey,
-                       backgroundColor: Color(0xffebeef2),
-                     ),
-                   ),
-                 ],
-               ),
-               Row(
-                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                 children: [
-                   TextButton.icon(
-                     onPressed: () {},
-                     label: Text(
-                       "Wearables",
-                       style: TextStyle(
-                         color: Colors.black.withOpacity(0.7),
-                         fontWeight: FontWeight.bold,
-                       ),
-                     ),
-                     icon: Icon(Icons.watch, color: Colors.purple),
-                     style: TextButton.styleFrom(
-                       elevation: 5,
-                       shape: RoundedRectangleBorder(
-                         borderRadius: BorderRadiusGeometry.all(
-                           Radius.circular(10),
-                         ),
-                       ),
-                       shadowColor: Colors.grey,
-                       backgroundColor: Color(0xffebeef2),
-                     ),
-                   ),
-                   TextButton.icon(
-                     onPressed: () {},
-                     label: Text(
-                       "Camera",
-                       style: TextStyle(
-                         color: Colors.black.withOpacity(0.7),
-                         fontWeight: FontWeight.bold,
-                       ),
-                     ),
-                     icon: Icon(Icons.camera_alt, color: Colors.purple),
-                     style: TextButton.styleFrom(
-                       elevation: 5,
-                       shape: RoundedRectangleBorder(
-                         borderRadius: BorderRadiusGeometry.all(
-                           Radius.circular(10),
-                         ),
-                       ),
-                       shadowColor: Colors.grey,
-                       backgroundColor: Color(0xffebeef2),
-                     ),
-                   ),
-                   TextButton.icon(
-                     onPressed: () {},
-                     label: Text(
-                       "Shoeses",
-                       style: TextStyle(
-                         color: Colors.black.withOpacity(0.7),
-                         fontWeight: FontWeight.bold,
-                       ),
-                     ),
-                     icon: FaIcon(
-                       FontAwesomeIcons.shoePrints,
-                       color: Colors.purple,
-                     ),
-                     style: TextButton.styleFrom(
-                       elevation: 5,
-                       shape: RoundedRectangleBorder(
-                         borderRadius: BorderRadiusGeometry.all(
-                           Radius.circular(10),
-                         ),
-                       ),
-                       shadowColor: Colors.grey,
-                       backgroundColor: Color(0xffebeef2),
-                     ),
-                   ),
-                 ],
-               ),
-             ],
-           ),
-         ],
-       ),
-     )
+  }
+}
+
+
+class HomeItems extends StatelessWidget {
+  const HomeItems({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return      SizedBox(
+      height: 800,
+      child: ListView(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 200,
+                width: 400,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: list.length,
+                  itemBuilder: (context, index) => stack(
+                    title: list[index]["title"]!,
+                    subTitle: list[index]["subTitle"]!,
+                    imageURL: list[index]["imageURL"]!,
+                  ),
+                ),
+              ),
+              SizedBox(height: 15),
+              Padding(
+                padding: const EdgeInsetsGeometry.directional(start: 13),
+                child: Text(
+                  "Featured Products",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 299,
+                width: 400,
+                child: ListView.builder(
+
+                  itemBuilder: (context, index) => ListItem(
+                    name: listItems[index].name,
+                    price: listItems[index].price,
+                    rate: listItems[index].rate,
+                    imageURL: listItems[index].imageURL,
+                  ),
+                  itemCount: listItems.length,
+                  scrollDirection: Axis.horizontal,
+                ),
+              ),
+              SizedBox(height: 4),
+              Padding(
+                padding: const EdgeInsetsGeometry.directional(start: 13),
+                child: Text(
+                  "Categories",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+              SizedBox(height: 5),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  TextButton.icon(
+                    onPressed: () {},
+                    label: Text(
+                      "Electronics",
+                      style: TextStyle(
+                        color: Colors.black.withOpacity(0.7),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    icon: Icon(Icons.computer, color: Colors.purple),
+                    style: TextButton.styleFrom(
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadiusGeometry.all(
+                          Radius.circular(10),
+                        ),
+                      ),
+                      shadowColor: Colors.grey,
+                      backgroundColor: Color(0xffebeef2),
+                    ),
+                  ),
+                  TextButton.icon(
+                    onPressed: () {},
+                    label: Text(
+                      "Phones",
+                      style: TextStyle(
+                        color: Colors.black.withOpacity(0.7),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    icon: Icon(Icons.phone_android, color: Colors.purple),
+                    style: TextButton.styleFrom(
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadiusGeometry.all(
+                          Radius.circular(10),
+                        ),
+                      ),
+                      shadowColor: Colors.grey,
+                      backgroundColor: Color(0xffebeef2),
+                    ),
+                  ),
+                  TextButton.icon(
+                    onPressed: () {},
+                    label: Text(
+                      "Audio",
+                      style: TextStyle(
+                        color: Colors.black.withOpacity(0.7),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    icon: Icon(Icons.headphones_rounded, color: Colors.purple),
+                    style: TextButton.styleFrom(
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadiusGeometry.all(
+                          Radius.circular(10),
+                        ),
+                      ),
+                      shadowColor: Colors.grey,
+                      backgroundColor: Color(0xffebeef2),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  TextButton.icon(
+                    onPressed: () {},
+                    label: Text(
+                      "Wearables",
+                      style: TextStyle(
+                        color: Colors.black.withOpacity(0.7),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    icon: Icon(Icons.watch, color: Colors.purple),
+                    style: TextButton.styleFrom(
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadiusGeometry.all(
+                          Radius.circular(10),
+                        ),
+                      ),
+                      shadowColor: Colors.grey,
+                      backgroundColor: Color(0xffebeef2),
+                    ),
+                  ),
+                  TextButton.icon(
+                    onPressed: () {},
+                    label: Text(
+                      "Camera",
+                      style: TextStyle(
+                        color: Colors.black.withOpacity(0.7),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    icon: Icon(Icons.camera_alt, color: Colors.purple),
+                    style: TextButton.styleFrom(
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadiusGeometry.all(
+                          Radius.circular(10),
+                        ),
+                      ),
+                      shadowColor: Colors.grey,
+                      backgroundColor: Color(0xffebeef2),
+                    ),
+                  ),
+                  TextButton.icon(
+                    onPressed: () {},
+                    label: Text(
+                      "Shoeses",
+                      style: TextStyle(
+                        color: Colors.black.withOpacity(0.7),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    icon: FaIcon(
+                      FontAwesomeIcons.shoePrints,
+                      color: Colors.purple,
+                    ),
+                    style: TextButton.styleFrom(
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadiusGeometry.all(
+                          Radius.circular(10),
+                        ),
+                      ),
+                      shadowColor: Colors.grey,
+                      backgroundColor: Color(0xffebeef2),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
+
   }
 }
 
